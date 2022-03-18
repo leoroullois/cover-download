@@ -1,4 +1,5 @@
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { searchAlbum, updateSearch } from "@store/slices/deezer";
 import {
 	ChangeEventHandler,
 	KeyboardEventHandler,
@@ -6,29 +7,32 @@ import {
 	useState,
 } from "react";
 import { IoMdBackspace, IoMdSearch } from "react-icons/io";
+import { useDispatch } from "react-redux";
 
 const SearchBar = () => {
-	const [album, setAlbum] = useState("");
+	const dispatch = useDispatch();
+	const [search, setSearch] = useState("");
 	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-		setAlbum(e.target.value);
+		setSearch(e.target.value);
 	};
-	const handleDelete = () => setAlbum("");
+	const handleDelete = () => setSearch("");
 	const handleEnter: KeyboardEventHandler = (e) => {
-		e.preventDefault();
-		if(e.code === "Enter") {
-			console.log("first")
+		if (e.code === "Enter") {
+			console.log("dispatch(album) ");
+			dispatch(updateSearch(search));
+			dispatch(searchAlbum(search));
 		}
 	};
 	return (
 		<InputGroup>
 			<Input
-				value={album}
+				value={search}
 				onChange={handleChange}
 				onKeyDown={handleEnter}
 				placeholder='Search for an album'
 			/>
 			<InputRightElement>
-				{album ? <IoMdBackspace onClick={handleDelete} /> : <IoMdSearch />}
+				{search ? <IoMdBackspace onClick={handleDelete} /> : <IoMdSearch />}
 			</InputRightElement>
 		</InputGroup>
 	);

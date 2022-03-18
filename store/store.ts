@@ -2,14 +2,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 // ! Reducers
-import album from "@store/slices/album";
+import deezer from "@store/slices/deezer";
 
 const middleware = [thunk];
 
 const makeStore = () =>
 	configureStore({
 		reducer: {
-			album,
+			deezer,
 		},
 		middleware,
 	});
