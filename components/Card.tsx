@@ -17,10 +17,41 @@ import { FC } from "react";
 import { IoMdDownload } from "react-icons/io";
 import scss from "@scss/components/card.module.scss";
 
+import slugify from "slugify";
 interface IProps {
 	album: SearchAlbumResponse;
 }
 const Card: FC<IProps> = ({ album }) => {
+	const toDataURL = (url: string) => {
+		return fetch(url)
+			.then((response) => {
+				return response.blob();
+			})
+			.then((blob) => {
+				return URL.createObjectURL(blob);
+			});
+	};
+	const download = async (quality: number) => {
+		const a = document.createElement("a");
+		switch (quality) {
+			case 1000:
+				a.href = await toDataURL(album.cover_xl);
+				break;
+			case 500:
+				a.href = await toDataURL(album.cover_big);
+				break;
+			case 250:
+				a.href = await toDataURL(album.cover_medium);
+			default:
+				a.href = await toDataURL(album.cover_xl);
+		}
+		a.download =
+			slugify(album.artist.name + " " + album.title).toLocaleLowerCase() +
+			"-cover.jpeg";
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+	};
 	return (
 		<>
 			<Box as='article' className={scss["card"]} margin='40px auto'>
@@ -37,7 +68,7 @@ const Card: FC<IProps> = ({ album }) => {
 					/>
 					<Heading as='h4' size='lg'>
 						<Link href={album.artist.link}>
-							<a>{album.artist.name}</a>
+							<a target='_blank'>{album.artist.name}</a>
 						</Link>
 					</Heading>
 				</HStack>
@@ -63,6 +94,7 @@ const Card: FC<IProps> = ({ album }) => {
 						width={300}
 						maxWidth='full'
 						minWidth={200}
+						onClick={() => download(1000)}
 					>
 						Download 1000*1000
 					</Button>
@@ -71,6 +103,7 @@ const Card: FC<IProps> = ({ album }) => {
 						width={300}
 						maxWidth='full'
 						minWidth={200}
+						onClick={() => download(500)}
 					>
 						Download 500*500
 					</Button>
@@ -79,6 +112,7 @@ const Card: FC<IProps> = ({ album }) => {
 						width={300}
 						maxWidth='full'
 						minWidth={200}
+						onClick={() => download(250)}
 					>
 						Download 250*250
 					</Button>
