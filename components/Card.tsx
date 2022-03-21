@@ -66,14 +66,14 @@ const Card: FC<IProps> = ({ album }) => {
 					src={album.artist.picture_medium}
 					size='xl'
 				/>
-				<Heading as='h4' size='lg' overflow='clip' color="white">
+				<Heading as='h4' size='lg' overflow='clip' color='white'>
 					<Link href={album.artist.link}>
 						<a target='_blank'>{album.artist.name}</a>
 					</Link>
 				</Heading>
 			</HStack>
 			<Divider marginY={5} />
-			<Heading as='h4' size='md' textAlign='center' color="white">
+			<Heading as='h4' size='md' textAlign='center' color='white'>
 				{album.title} - {album.nb_tracks} tracks
 			</Heading>
 			<Center marginY={5}>
@@ -94,8 +94,8 @@ const Card: FC<IProps> = ({ album }) => {
 					width={300}
 					maxWidth='full'
 					minWidth={200}
-					backgroundColor='whiteAlpha'
-					color="white"
+					backgroundColor='whiteAlpha.200'
+					color='white'
 					onClick={() => download(1000)}
 				>
 					Download 1000*1000
@@ -105,7 +105,8 @@ const Card: FC<IProps> = ({ album }) => {
 					width={300}
 					maxWidth='full'
 					minWidth={200}
-					colorScheme='gray'
+					backgroundColor='whiteAlpha.200'
+					color='white'
 					onClick={() => download(500)}
 				>
 					Download 500*500
@@ -115,7 +116,8 @@ const Card: FC<IProps> = ({ album }) => {
 					width={300}
 					maxWidth='full'
 					minWidth={200}
-					colorScheme='gray'
+					backgroundColor='whiteAlpha.200'
+					color='white'
 					onClick={() => download(250)}
 				>
 					Download 250*250
