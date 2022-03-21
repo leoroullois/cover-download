@@ -52,10 +52,14 @@ const deezer = createSlice({
 		builder.addCase(
 			searchAlbum.fulfilled,
 			(state, action: PayloadAction<Response<SearchAlbumResponse>>) => {
-				state.albums = action.payload;
-				state.albums.data = state.albums.data.filter(
-					(album) => album.record_type === "album"
-				);
+				if (action.payload.total !== 0) {
+					state.albums = action.payload;
+					state.albums.data = state.albums.data.filter(
+						(album) => album.record_type === "album"
+					);
+				} else {
+					state = init();
+				}
 			}
 		);
 		builder.addCase(searchAlbum.rejected, () => {

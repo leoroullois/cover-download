@@ -26,12 +26,14 @@ const SearchBar = () => {
 	return (
 		<InputGroup>
 			<Input
+				marginTop={4}
 				value={search}
 				onChange={handleChange}
 				onKeyDown={handleEnter}
+				color="white"
 				placeholder='Search for an album'
 			/>
-			<InputRightElement>
+			<InputRightElement marginTop={4} color="white">
 				{search ? <IoMdBackspace onClick={handleDelete} /> : <IoMdSearch />}
 			</InputRightElement>
 		</InputGroup>

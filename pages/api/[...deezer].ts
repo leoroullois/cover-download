@@ -1,6 +1,5 @@
 import { NextApiHandler } from "next";
 import * as deezerApi from "deezer-api-ts";
-
 const handler: NextApiHandler = async (req, res) => {
 	const params = req.query.deezer;
 	if (req.method === "GET") {
