@@ -58,7 +58,7 @@ const Card: FC<IProps> = ({ album }) => {
 			<HStack
 				justify='center'
 				align='center'
-				divider={<StackDivider />}
+				divider={<StackDivider backgroundColor="gray.800"/>}
 				spacing={10}
 			>
 				<Avatar
@@ -72,7 +72,7 @@ const Card: FC<IProps> = ({ album }) => {
 					</Link>
 				</Heading>
 			</HStack>
-			<Divider marginY={5} />
+			<Divider marginY={5} backgroundColor="gray.800"/>
 			<Heading as='h4' size='md' textAlign='center' color='white'>
 				{album.title} - {album.nb_tracks} tracks
 			</Heading>
@@ -96,6 +96,7 @@ const Card: FC<IProps> = ({ album }) => {
 					minWidth={200}
 					backgroundColor='whiteAlpha.200'
 					color='white'
+					className={scss["card-btn"]}
 					onClick={() => download(1000)}
 				>
 					Download 1000*1000
@@ -107,6 +108,7 @@ const Card: FC<IProps> = ({ album }) => {
 					minWidth={200}
 					backgroundColor='whiteAlpha.200'
 					color='white'
+					className={scss["card-btn"]}
 					onClick={() => download(500)}
 				>
 					Download 500*500
@@ -118,6 +120,7 @@ const Card: FC<IProps> = ({ album }) => {
 					minWidth={200}
 					backgroundColor='whiteAlpha.200'
 					color='white'
+					className={scss["card-btn"]}
 					onClick={() => download(250)}
 				>
 					Download 250*250

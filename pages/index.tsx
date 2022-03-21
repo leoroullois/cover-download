@@ -48,11 +48,11 @@ const Home: NextPage = () => {
 						</Heading>
 						<SearchBar />
 					</Stack>
-					<Divider />
+					<Divider backgroundColor='gray.800' />
 					<Wrap spacing='60px' justify='center' as='section' overflow='hidden'>
 						{albums.total !== 0 ? (
 							albums.data.map((album, i) => {
-								return <Card album={album} key={i}  />;
+								return <Card album={album} key={i} />;
 							})
 						) : (
 							<Center color='white'>0 album found</Center>
